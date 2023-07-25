@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/dashboard.css" />
+  </head>
+  <body>
+    <h1>DashBoard</h1>
+    <div class="container">
+      <div class="card">
+        <div class="content">
+          <div class="imgBx"><img src="{{ url_for('video_feed') }}" /></div>
+          <div class="contentBx">
+            <h3>Video Feed</h3>
+            <div class="form">
+              <form action="/process" method="post">
+                <div class="field-wrap">
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Enter Name*"
+                    required
+                    autocomplete="off"
+                  />
+                </div>
+                <button type="submit" class="button button-block">Add</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="content">
+          <h1>List of past Intrusion</h1>
+          <table class="rwd-table">
+            <tr>
+              <th>Date</th>
+              <th>Time</th>
+            </tr>
+            {% for row in table_data[::-1] %} {% if loop.index <= 5 %}
+            <tr>
+              {% for value in row %}
+              <td>{{ value }}</td>
+              {% endfor %}
+            </tr>
+            {% endif %} {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
